@@ -24,8 +24,8 @@ final class AssemblyModelBuilder: AssemblyModelBuilderProtocol {
     }
     
     func createPostDetailsModule(router: RouterProtocol) -> UIViewController {
-        let presenter = NIPostListPresenter(router: router)
-        let viewController = NIPostListViewController()
+        let presenter = NIPostDetailsPresenter(router: router)
+        let viewController = NIPostDetailsViewController()
         viewController.presenter = presenter
         presenter.inject(view: viewController)
         return viewController

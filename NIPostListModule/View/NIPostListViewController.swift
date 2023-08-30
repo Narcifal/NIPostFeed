@@ -86,7 +86,7 @@ extension NIPostListViewController: NIPostListViewProtocol { }
 extension NIPostListViewController: UITableViewDelegate {
    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
+        presenter.didTapCell(indexPath: indexPath)
     }
 }
 

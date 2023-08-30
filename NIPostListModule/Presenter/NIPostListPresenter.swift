@@ -8,7 +8,7 @@
 import Foundation
 
 protocol NIPostListPresenterProtocol: AnyObject {
-    func showScanResult() 
+    func didTapCell(indexPath: IndexPath)
 }
 
 final class NIPostListPresenter: NIPostListPresenterProtocol {
@@ -27,7 +27,7 @@ final class NIPostListPresenter: NIPostListPresenterProtocol {
         self.view = view
     }
     
-    func showScanResult() {
+    func didTapCell(indexPath: IndexPath) {
         router.showPostDetailsModule()
     }
     
