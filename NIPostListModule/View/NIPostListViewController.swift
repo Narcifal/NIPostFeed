@@ -7,12 +7,20 @@
 
 import UIKit
 
-class NIPostListViewController: UIViewController {
+protocol NIPostListViewProtocol: AnyObject {
+    
+}
 
+final class NIPostListViewController: UIViewController {
+    
+    var presenter: NIPostListPresenterProtocol!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .brown
     }
     
 }
+
+extension NIPostListViewController: NIPostListViewProtocol { }
