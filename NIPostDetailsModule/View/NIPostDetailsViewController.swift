@@ -6,22 +6,19 @@
 //
 
 import UIKit
+import Kingfisher
 
-protocol NIPostDetailsViewProtocol: AnyObject {
-    
-}
+protocol NIPostDetailsViewProtocol: AnyObject { }
 
 final class NIPostDetailsViewController: UIViewController {
 
+    // MARK: - Properties -
     var presenter: NIPostDetailsPresenterProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
     }
-    
-
 }
 
-extension NIPostDetailsViewController: NIPostDetailsViewProtocol {}
+extension NIPostDetailsViewController: NIPostDetailsViewProtocol { }
