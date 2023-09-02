@@ -7,7 +7,9 @@
 
 import Foundation
 
-protocol NIPostDetailsPresenterProtocol: AnyObject { }
+protocol NIPostDetailsPresenterProtocol: AnyObject {
+    func getPostDetails()
+}
 
 final class NIPostDetailsPresenter: NIPostDetailsPresenterProtocol {
     
@@ -23,12 +25,32 @@ final class NIPostDetailsPresenter: NIPostDetailsPresenterProtocol {
         self.networkService = networkService
         self.postId = postId
     }
-
+    
     // MARK: - Iternal -
     func inject(view: NIPostDetailsViewProtocol) {
         self.view = view
     }
     
+    func getPostDetails() {
+        let endPoint = EndPoint.details(id: postId)
+        NetworkService.shared.request(
+            endPoint: endPoint,
+            type: NIPostDetails.self
+        ) { [weak self] result in
+            switch result {
+            case .success(let result):
+                guard let result, let self else {
+                    return
+                }
+                self.view?.setupViewWithValues(with: result.post)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
 }
 
-private extension NIPostDetailsPresenter { }
+private extension NIPostDetailsPresenter {
+    
+}
