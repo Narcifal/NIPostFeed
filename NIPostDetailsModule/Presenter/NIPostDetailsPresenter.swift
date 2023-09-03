@@ -50,7 +50,3 @@ final class NIPostDetailsPresenter: NIPostDetailsPresenterProtocol {
     }
     
 }
-
-private extension NIPostDetailsPresenter {
-    
-}

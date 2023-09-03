@@ -29,6 +29,8 @@ final class NIPostDetailsViewController: UIViewController {
     @IBOutlet weak var postDescriptionLabel: UILabel!
     @IBOutlet weak var postTitleLabel: UILabel!
     @IBOutlet weak var postImageView: UIImageView!
+    
+    // MARK: - Life Cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -40,6 +42,7 @@ extension NIPostDetailsViewController: NIPostDetailsViewProtocol {
     func setupViewWithValues(with post: NIPostDetail) {
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
+            
             let imageUrl = URL(string: post.postImage)
             postImageView.kf.setImage(with: imageUrl)
             postTitleLabel.text = post.title
