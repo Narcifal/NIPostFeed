@@ -100,6 +100,6 @@ private extension NIPostListPresenter {
 }
 
 enum SortBy: String {
-    case date
-    case popularity
+    case date = "Date"
+    case popularity = "Popularity"
 }

@@ -13,9 +13,10 @@ protocol NIPostListViewProtocol: AnyObject {
 
 final class NIPostListViewController: UIViewController {
     
-    private struct Constant {
+    private enum Constant {
         static let screenTitle = "NIPostFeed"
         static let sortImage = "arrow.up.and.down.text.horizontal"
+        static let sortMenuTitle = "Sort By"
     }
     
     static func instantiate(with presenter: NIPostListPresenterProtocol) -> NIPostListViewController {
@@ -62,7 +63,7 @@ private extension NIPostListViewController {
     func setupViewController() {
         title = Constant.screenTitle
         view.backgroundColor = .white
-        sortListMenu = UIMenu(title: "Sort By", children: createSortActions())
+        sortListMenu = UIMenu(title: Constant.sortMenuTitle, children: setupSortActions())
         navigationItem.rightBarButtonItem = rightBarButtonItem
     }
     
@@ -76,16 +77,18 @@ private extension NIPostListViewController {
         )
     }
     
-    func createSortActions() -> [UIAction] {
-        let byDateTitle = "Date"
-        let byPopularityTitle = "Popularity"
-        let byDate = UIAction(title: byDateTitle) { [weak self]_ in
-            self?.presenter.sortList(by: SortBy.date)
-        }
-        let byPopularity = UIAction(title: byPopularityTitle) { [weak self]_ in
-            self?.presenter.sortList(by: SortBy.popularity)
-        }
+    func setupSortActions() -> [UIAction] {
+        let byDate = createSortAction(ofType: SortBy.date)
+        let byPopularity = createSortAction(ofType: SortBy.popularity)
         return [byDate, byPopularity]
+    }
+    
+    func createSortAction(ofType type: SortBy) -> UIAction {
+        let actionTitle = type.rawValue
+        let action = UIAction(title: actionTitle) { [weak self] _ in
+            self?.presenter.sortList(by: type)
+        }
+        return action
     }
     
     func updateCellSize() {
@@ -98,6 +101,7 @@ extension NIPostListViewController: UITableViewDelegate {
    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter.didTapCell(indexPath: indexPath)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
