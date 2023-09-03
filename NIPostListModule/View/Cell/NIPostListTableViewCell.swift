@@ -21,8 +21,8 @@ final class NIPostListTableViewCell: UITableViewCell {
     @IBOutlet weak var expandButton: UIButton!
     
     //MARK: - Properties -
-    private var isExpanded = false
     static let identifier = "PostListCell"
+    private var isExpanded = false
     var cellUpdate: (() -> Void)!
     
     // MARK: - Life Cycle -
@@ -51,12 +51,13 @@ final class NIPostListTableViewCell: UITableViewCell {
         }
     }
     
-    static func nib() -> UINib {
-        return UINib(nibName: "NIPostListTableViewCell", bundle: nil)
-    }
-
     func configure(update: @escaping () -> Void) {
         cellUpdate = update
+        cellUpdate()
+    }
+    
+    static func nib() -> UINib {
+        return UINib(nibName: "NIPostListTableViewCell", bundle: nil)
     }
 }
 
