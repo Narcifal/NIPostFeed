@@ -14,7 +14,7 @@ protocol RouterMain: AnyObject {
 
 protocol RouterProtocol: RouterMain {
     func showPostListModule()
-    func showPostDetailsModule()
+    func showPostDetailsModule(id: Int)
 }
 
 final class Router: RouterProtocol {
@@ -36,8 +36,8 @@ final class Router: RouterProtocol {
         navigationController?.setViewControllers([postListModule], animated: true)
     }
     
-    func showPostDetailsModule() {
-        let postDetailsModule = assemblyBuilder.createPostDetailsModule(router: self)
+    func showPostDetailsModule(id: Int) {
+        let postDetailsModule = assemblyBuilder.createPostDetailsModule(router: self, id: id)
         navigationController?.pushViewController(postDetailsModule, animated: true)
     }
     

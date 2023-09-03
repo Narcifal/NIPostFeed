@@ -8,7 +8,7 @@
 import Foundation
 
 protocol NIPostDetailsPresenterProtocol: AnyObject {
-
+    func getPostDetails()
 }
 
 final class NIPostDetailsPresenter: NIPostDetailsPresenterProtocol {
@@ -16,15 +16,37 @@ final class NIPostDetailsPresenter: NIPostDetailsPresenterProtocol {
     //MARK: - Properties -
     private weak var view: NIPostDetailsViewProtocol?
     private let router: RouterProtocol
+    private var networkService: NetworkServiceProtocol
+    private let postId: Int
     
     //MARK: - Life Cycle -
-    required init(router: RouterProtocol) {
+    required init(router: RouterProtocol, networkService: NetworkServiceProtocol = NetworkService.shared, postId: Int) {
         self.router = router
+        self.networkService = networkService
+        self.postId = postId
     }
-
+    
     // MARK: - Iternal -
     func inject(view: NIPostDetailsViewProtocol) {
         self.view = view
     }
+    
+    func getPostDetails() {
+        let endPoint = EndPoint.details(id: postId)
+        NetworkService.shared.request(
+            endPoint: endPoint,
+            type: NIPostDetails.self
+        ) { [weak self] result in
+            switch result {
+            case .success(let result):
+                guard let result, let self else {
+                    return
+                }
+                self.view?.setupViewWithValues(with: result.post)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
 }
-
