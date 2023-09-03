@@ -11,6 +11,7 @@ import Alamofire
 private struct EndPointConstants {
     static let urlScheme = "https"
     static let urlHost = "raw.githubusercontent.com"
+    static let jsonFormat = ".json"
 }
 
 enum APIConstant {
@@ -37,9 +38,8 @@ enum EndPoint {
         case .list:
             return APIConstant.EndPointPostPath.listPath.rawValue
         case .details(let id):
-            let jsonFormat = ".json"
             let stringId = String(id)
-            return APIConstant.EndPointPostPath.detailsPath.rawValue + stringId + jsonFormat
+            return APIConstant.EndPointPostPath.detailsPath.rawValue + stringId + EndPointConstants.jsonFormat
         }
     }
     
