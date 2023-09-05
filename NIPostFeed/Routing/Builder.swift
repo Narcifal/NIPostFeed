@@ -7,23 +7,26 @@
 
 import UIKit
 
-protocol AssemblyModelBuilderProtocol: AnyObject {
+protocol BuilderProtocol {
     func createPostListModule(router: RouterProtocol) -> UIViewController
     func createPostDetailsModule(router: RouterProtocol, id: Int) -> UIViewController
 }
 
-final class AssemblyModelBuilder: AssemblyModelBuilderProtocol {
+final class Builder: BuilderProtocol {
    
+    // MARK: - Properties -
+    var networkService = NetworkService()
+    
     // MARK: - Iternal -
     func createPostListModule(router: RouterProtocol) -> UIViewController {
-        let presenter = NIPostListPresenter(router: router)
+        let presenter = NIPostListPresenter(router: router, networkService: networkService)
         let viewController = NIPostListViewController.instantiate(with: presenter)
         presenter.inject(view: viewController)
         return viewController
     }
     
     func createPostDetailsModule(router: RouterProtocol, id: Int) -> UIViewController {
-        let presenter = NIPostDetailsPresenter(router: router, postId: id)
+        let presenter = NIPostDetailsPresenter(router: router, networkService: networkService, postId: id)
         let viewController = NIPostDetailsViewController.instantiate(with: presenter)
         presenter.inject(view: viewController)
         return viewController

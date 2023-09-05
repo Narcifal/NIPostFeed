@@ -23,12 +23,12 @@ final class NIPostDetailsViewController: UIViewController {
     // MARK: - Properties -
     var presenter: NIPostDetailsPresenterProtocol!
     
-    @IBOutlet weak var postDateLabel: UILabel!
-    @IBOutlet weak var postLikesLabel: UILabel!
-    @IBOutlet weak var likesImageView: UIImageView!
-    @IBOutlet weak var postDescriptionLabel: UILabel!
-    @IBOutlet weak var postTitleLabel: UILabel!
-    @IBOutlet weak var postImageView: UIImageView!
+    @IBOutlet private weak var postDateLabel: UILabel!
+    @IBOutlet private weak var postLikesLabel: UILabel!
+    @IBOutlet private weak var likesImageView: UIImageView!
+    @IBOutlet private weak var postDescriptionLabel: UILabel!
+    @IBOutlet private weak var postTitleLabel: UILabel!
+    @IBOutlet private weak var postImageView: UIImageView!
     
     // MARK: - Life Cycle -
     override func viewDidLoad() {

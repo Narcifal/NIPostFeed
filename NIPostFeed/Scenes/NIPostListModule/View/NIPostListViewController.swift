@@ -29,13 +29,13 @@ final class NIPostListViewController: UIViewController {
     var presenter: NIPostListPresenterProtocol!
     
     // MARK: - UIComponents -
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
     private lazy var rightBarButtonItem: UIBarButtonItem = {
         let button = UIBarButtonItem()
         button.image = UIImage(systemName: Constant.sortImage)
         button.target = self
         button.menu = sortListMenu
-        button.tintColor = .black
+        //button.tintColor = .black
         return button
     }()
     private var sortListMenu: UIMenu?
@@ -62,7 +62,6 @@ private extension NIPostListViewController {
     
     func setupViewController() {
         title = Constant.screenTitle
-        view.backgroundColor = .white
         sortListMenu = UIMenu(title: Constant.sortMenuTitle, children: setupSortActions())
         navigationItem.rightBarButtonItem = rightBarButtonItem
     }

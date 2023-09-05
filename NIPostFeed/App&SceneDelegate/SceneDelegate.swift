@@ -21,8 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         
         let navigationController = UINavigationController()
-        let assemblyBuilder = AssemblyModelBuilder()
-        let router = Router(assemblyBuilder: assemblyBuilder,
+        let builder = Builder()
+        let router = Router(builder: builder,
                             navigationController: navigationController)
         router.showPostListModule()
         

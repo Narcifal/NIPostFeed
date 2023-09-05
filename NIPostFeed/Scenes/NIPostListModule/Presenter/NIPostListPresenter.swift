@@ -20,7 +20,7 @@ final class NIPostListPresenter: NIPostListPresenterProtocol {
     //MARK: - Properties -
     private weak var view: NIPostListViewProtocol?
     private let router: RouterProtocol
-    private var networkService: NetworkServiceProtocol
+    private let networkService: NetworkServiceProtocol
     var postCellModels = [NIPost]()
     var postCellModelsCount: Int {
         get {
@@ -29,7 +29,7 @@ final class NIPostListPresenter: NIPostListPresenterProtocol {
     }
     
     //MARK: - Life Cycle -
-    required init(router: RouterProtocol, networkService: NetworkServiceProtocol = NetworkService.shared) {
+    required init(router: RouterProtocol, networkService: NetworkServiceProtocol) {
         self.router = router
         self.networkService = networkService
     }
@@ -46,7 +46,7 @@ final class NIPostListPresenter: NIPostListPresenterProtocol {
     
     func getPostList() {
         let endPoint = EndPoint.list
-        NetworkService.shared.request(
+        networkService.request(
             endPoint: endPoint,
             type: NIPostList.self
         ) { [weak self] result in
