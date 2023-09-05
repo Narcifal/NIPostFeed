@@ -59,14 +59,14 @@ enum EndPoint {
         }
     }
     
-    func completeUrlString() -> String {
+    func completeUrl() -> URL? {
         var urlBuilder = URLComponents()
         urlBuilder.scheme = EndPointConstants.urlScheme
         urlBuilder.host = EndPointConstants.urlHost
         urlBuilder.path = self.path
-        guard let urlString = urlBuilder.string else {
-            return "Error while creating a string url."
+        guard let url = urlBuilder.url else {
+            return nil
         }
-        return urlString
+        return url
     }
 }

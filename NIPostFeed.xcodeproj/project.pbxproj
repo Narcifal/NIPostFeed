@@ -15,7 +15,7 @@
 		9A08B7912A9F8768005DE48D /* NIPostListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08B7902A9F8767005DE48D /* NIPostListPresenter.swift */; };
 		9A08B7932A9F87C8005DE48D /* NIPostList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08B7922A9F87C8005DE48D /* NIPostList.swift */; };
 		9A08B7952A9F87D8005DE48D /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08B7942A9F87D8005DE48D /* Router.swift */; };
-		9A08B7992A9F8825005DE48D /* AssemblyModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08B7982A9F8825005DE48D /* AssemblyModelBuilder.swift */; };
+		9A08B7992A9F8825005DE48D /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08B7982A9F8825005DE48D /* Builder.swift */; };
 		9A08B79B2A9F8A7F005DE48D /* NIPostDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08B79A2A9F8A7F005DE48D /* NIPostDetails.swift */; };
 		9A08B79D2A9F8A94005DE48D /* NIPostDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08B79C2A9F8A94005DE48D /* NIPostDetailsPresenter.swift */; };
 		9A08B79F2A9F8A9D005DE48D /* NIPostDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A08B79E2A9F8A9D005DE48D /* NIPostDetailsViewController.swift */; };
@@ -44,7 +44,7 @@
 		9A08B7902A9F8767005DE48D /* NIPostListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIPostListPresenter.swift; sourceTree = "<group>"; };
 		9A08B7922A9F87C8005DE48D /* NIPostList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIPostList.swift; sourceTree = "<group>"; };
 		9A08B7942A9F87D8005DE48D /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		9A08B7982A9F8825005DE48D /* AssemblyModelBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyModelBuilder.swift; sourceTree = "<group>"; };
+		9A08B7982A9F8825005DE48D /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
 		9A08B79A2A9F8A7F005DE48D /* NIPostDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIPostDetails.swift; sourceTree = "<group>"; };
 		9A08B79C2A9F8A94005DE48D /* NIPostDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIPostDetailsPresenter.swift; sourceTree = "<group>"; };
 		9A08B79E2A9F8A9D005DE48D /* NIPostDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIPostDetailsViewController.swift; sourceTree = "<group>"; };
@@ -93,12 +93,10 @@
 			isa = PBXGroup;
 			children = (
 				9A08B7842A9F74F9005DE48D /* App&SceneDelegate */,
-				9A08B7972A9F87DF005DE48D /* AssemblyModelBuilder */,
-				9A08B7962A9F87DA005DE48D /* Router */,
-				9A08B7AA2A9F9BD1005DE48D /* NetworkService */,
-				9A08B7862A9F7511005DE48D /* NIPostListModule */,
-				9A08B78C2A9F75AF005DE48D /* NIPostDetailsModule */,
+				9A82D7AF2AA724A30010207D /* Scenes */,
 				9A61CFDF2AA0BC39009FE125 /* Extensions */,
+				9A08B7AA2A9F9BD1005DE48D /* Network */,
+				9A08B7962A9F87DA005DE48D /* Routing */,
 				9A08B7852A9F750A005DE48D /* Supporting */,
 				9A08B77E2A9F74D9005DE48D /* Info.plist */,
 			);
@@ -119,7 +117,6 @@
 			children = (
 				9A08B7792A9F74D9005DE48D /* Assets.xcassets */,
 				9A08B77B2A9F74D9005DE48D /* LaunchScreen.storyboard */,
-				9A08B7B02A9FA397005DE48D /* EndPoint.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -195,20 +192,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		9A08B7962A9F87DA005DE48D /* Router */ = {
+		9A08B7962A9F87DA005DE48D /* Routing */ = {
 			isa = PBXGroup;
 			children = (
+				9A08B7982A9F8825005DE48D /* Builder.swift */,
 				9A08B7942A9F87D8005DE48D /* Router.swift */,
 			);
-			path = Router;
-			sourceTree = "<group>";
-		};
-		9A08B7972A9F87DF005DE48D /* AssemblyModelBuilder */ = {
-			isa = PBXGroup;
-			children = (
-				9A08B7982A9F8825005DE48D /* AssemblyModelBuilder.swift */,
-			);
-			path = AssemblyModelBuilder;
+			path = Routing;
 			sourceTree = "<group>";
 		};
 		9A08B7A52A9F9829005DE48D /* Cell */ = {
@@ -220,12 +210,13 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		9A08B7AA2A9F9BD1005DE48D /* NetworkService */ = {
+		9A08B7AA2A9F9BD1005DE48D /* Network */ = {
 			isa = PBXGroup;
 			children = (
 				9A08B7AB2A9F9BE6005DE48D /* NetworkService.swift */,
+				9A08B7B02A9FA397005DE48D /* EndPoint.swift */,
 			);
-			path = NetworkService;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		9A61CFDF2AA0BC39009FE125 /* Extensions */ = {
@@ -237,6 +228,15 @@
 				9A760E2A2AA3962200311B70 /* UIStoryboardExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9A82D7AF2AA724A30010207D /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				9A08B7862A9F7511005DE48D /* NIPostListModule */,
+				9A08B78C2A9F75AF005DE48D /* NIPostDetailsModule */,
+			);
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -330,7 +330,7 @@
 				9A08B79F2A9F8A9D005DE48D /* NIPostDetailsViewController.swift in Sources */,
 				9A08B7932A9F87C8005DE48D /* NIPostList.swift in Sources */,
 				9A08B7912A9F8768005DE48D /* NIPostListPresenter.swift in Sources */,
-				9A08B7992A9F8825005DE48D /* AssemblyModelBuilder.swift in Sources */,
+				9A08B7992A9F8825005DE48D /* Builder.swift in Sources */,
 				9A08B7732A9F74D8005DE48D /* SceneDelegate.swift in Sources */,
 				9A08B79D2A9F8A94005DE48D /* NIPostDetailsPresenter.swift in Sources */,
 				9A08B7952A9F87D8005DE48D /* Router.swift in Sources */,

@@ -7,12 +7,7 @@
 
 import UIKit
 
-protocol RouterMain: AnyObject {
-    var navigationController: UINavigationController? { get set }
-    var assemblyBuilder: AssemblyModelBuilderProtocol { get set }
-}
-
-protocol RouterProtocol: RouterMain {
+protocol RouterProtocol {
     func showPostListModule()
     func showPostDetailsModule(id: Int)
 }
@@ -20,24 +15,24 @@ protocol RouterProtocol: RouterMain {
 final class Router: RouterProtocol {
     
     // MARK: - Properties -
-    var assemblyBuilder: AssemblyModelBuilderProtocol
-    var navigationController: UINavigationController?
+    private var builder: BuilderProtocol
+    private var navigationController: UINavigationController?
     
     // MARK: - Life Cycle -
-    init(assemblyBuilder: AssemblyModelBuilderProtocol,
+    init(builder: BuilderProtocol,
          navigationController: UINavigationController) {
-        self.assemblyBuilder = assemblyBuilder
+        self.builder = builder
         self.navigationController = navigationController
     }
     
     // MARK: - Iternal -
     func showPostListModule() {
-        let postListModule = assemblyBuilder.createPostListModule(router: self)
+        let postListModule = builder.createPostListModule(router: self)
         navigationController?.setViewControllers([postListModule], animated: true)
     }
     
     func showPostDetailsModule(id: Int) {
-        let postDetailsModule = assemblyBuilder.createPostDetailsModule(router: self, id: id)
+        let postDetailsModule = builder.createPostDetailsModule(router: self, id: id)
         navigationController?.pushViewController(postDetailsModule, animated: true)
     }
     

@@ -16,11 +16,11 @@ final class NIPostDetailsPresenter: NIPostDetailsPresenterProtocol {
     //MARK: - Properties -
     private weak var view: NIPostDetailsViewProtocol?
     private let router: RouterProtocol
-    private var networkService: NetworkServiceProtocol
+    private let networkService: NetworkServiceProtocol
     private let postId: Int
     
     //MARK: - Life Cycle -
-    required init(router: RouterProtocol, networkService: NetworkServiceProtocol = NetworkService.shared, postId: Int) {
+    required init(router: RouterProtocol, networkService: NetworkServiceProtocol, postId: Int) {
         self.router = router
         self.networkService = networkService
         self.postId = postId
@@ -33,7 +33,7 @@ final class NIPostDetailsPresenter: NIPostDetailsPresenterProtocol {
     
     func getPostDetails() {
         let endPoint = EndPoint.details(id: postId)
-        NetworkService.shared.request(
+        networkService.request(
             endPoint: endPoint,
             type: NIPostDetails.self
         ) { [weak self] result in

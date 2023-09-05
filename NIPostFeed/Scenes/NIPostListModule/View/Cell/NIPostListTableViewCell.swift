@@ -14,11 +14,11 @@ final class NIPostListTableViewCell: UITableViewCell {
         static let collapseButtonTitle = "Collapse"
     }
     
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var previewTextLabel: UILabel!
-    @IBOutlet weak var likesLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var expandButton: UIButton!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var previewTextLabel: UILabel!
+    @IBOutlet private weak var likesLabel: UILabel!
+    @IBOutlet private weak var dateLabel: UILabel!
+    @IBOutlet private weak var expandButton: UIButton!
     
     //MARK: - Properties -
     static let identifier = "PostListCell"
@@ -26,19 +26,13 @@ final class NIPostListTableViewCell: UITableViewCell {
     var cellUpdate: (() -> Void)!
     
     // MARK: - Life Cycle -
-    
-    // MARK: - Iternal -
     override func layoutSubviews() {
         super.layoutSubviews()
         
         setupExpandButton()
     }
     
-    @IBAction func didTapExpandButton(_ sender: UIButton) {
-        setButtonTitle()
-        cellUpdate()
-    }
-    
+    // MARK: - Iternal -
     var cellModel: NIPost? {
         didSet {
             if let cell = self.cellModel {
@@ -78,5 +72,10 @@ private extension NIPostListTableViewCell {
         isExpanded = buttonTitle == Constant.expandButtonTitle ? false : true
         expandButton.setTitle(buttonTitle, for: .normal)
         previewTextLabel.numberOfLines = isExpanded ? 0 : 2
+    }
+    
+    @IBAction func didTapExpandButton(_ sender: UIButton) {
+        setButtonTitle()
+        cellUpdate()
     }
 }
